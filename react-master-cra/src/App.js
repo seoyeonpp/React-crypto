@@ -4,6 +4,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content:center;
   align-items: center;
+  height: 100vh;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const rotateAni = keyframes`
@@ -19,6 +21,10 @@ const rotateAni = keyframes`
     transform: rotate(0deg);
     border-radius: 0px;
   }
+`;
+
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Emoji = styled.span`
@@ -46,6 +52,7 @@ const Box = styled.div`
 function App() {
   return (
     <Wrapper>
+      <Title>Hello~~~</Title>
       <Box>
         <Emoji as="p">😎</Emoji>
       </Box>
