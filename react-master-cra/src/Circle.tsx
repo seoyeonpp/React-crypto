@@ -1,5 +1,5 @@
-import exp from 'constants';
 import styled, { keyframes } from "styled-components";
+import {useState , useEffect} from "react";
 
 // interface 는 object의 shape를 설명해줌
 interface ContainerProps {
@@ -23,6 +23,7 @@ interface CircleProps {
 }
 
 function Circle ({ bgColor, borderColor, text="default text" } : CircleProps) {
+    const [counter, setCounter] = useState<number | string>(0);
     return (
         <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
             {text}
