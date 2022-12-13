@@ -1,4 +1,4 @@
-import { Switch,Route, useLocation, useParams } from 'react-router-dom';
+import { Switch,Route, useLocation, useParams, Link, useRouteMatch } from 'react-router-dom';
 import React, {useState,useEffect } from 'react';
 import styled from 'styled-components';
 import Price from './Price';
@@ -45,6 +45,25 @@ const OverviewItem = styled.div`
 `;
 const Description = styled.p`
     margin: 20px 0px;
+`;
+
+const Tabs = styled.ul`
+    display: flex;
+    margin: 20px 0;
+    gap: 10px;
+`;
+const Tab = styled.li<{isActive: boolean}>`
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    a{
+        display: block; 
+        padding: 10px;
+        text-align: center;
+        font-weight: 500;
+        background-color: ${(props) => props.theme.accentColor};
+        color: ${(props) => props.isActive ? props.theme.bgColor :  props.theme.textColor};
+    }
 `;
 
 
@@ -116,6 +135,9 @@ function Coin() {
     const {state} = useLocation<RouteState>();
     const [info, setInfo] = useState<IInfoData>();
     const [priceInfo, setPriceInfo] = useState<IPriceData>();
+    const priceMatch = useRouteMatch("/:coinId/price");
+    const chartMatch = useRouteMatch("/:coinId/chart");
+    
     useEffect(() => {
         (async() => {
             const infoData = await (
@@ -166,6 +188,18 @@ function Coin() {
                         <span>{priceInfo?.max_supply}</span>
                     </OverviewItem>
                 </Overview>
+                <Tabs>
+                    <Tab isActive={priceMatch !== null}>
+                        <Link to={`/${coinId}/price`}>
+                            Price
+                        </Link>
+                    </Tab>
+                    <Tab isActive={chartMatch !== null}>
+                        <Link to={`/${coinId}/chart`}>
+                            Chart
+                        </Link>
+                    </Tab>
+                </Tabs>
                 <Switch>
                     <Route path={`/${coinId}/price`}>
                         <Price />
