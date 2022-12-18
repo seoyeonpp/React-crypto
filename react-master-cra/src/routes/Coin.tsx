@@ -63,8 +63,8 @@ const Tab = styled.li<{isActive: boolean}>`
         padding: 10px;
         text-align: center;
         font-weight: 500;
-        background-color: ${(props) => props.theme.accentColor};
-        color: ${(props) => props.isActive ? props.theme.bgColor :  props.theme.textColor};
+        background-color: ${(props) => props.isActive ? '#fab1a0' : props.theme.accentColor};
+        color: ${(props) => props.isActive ? props.theme.textColor :  props.theme.bgColor};
     }
 `;
 
