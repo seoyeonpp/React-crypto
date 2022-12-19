@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { fetchCoinHistory } from '../api';
 import ApexChart from 'react-apexcharts';
+import { type } from '@testing-library/user-event/dist/type';
 
 interface ChartProps {
     coinId : string;
@@ -49,7 +50,21 @@ function Chart({ coinId }:ChartProps) {
             grid:{show: false},
             yaxis: {show: false},
             xaxis: {
+                axisBorder: {show: false},
+                axisTicks: {show: false},
                 labels:{show: false},
+                type: 'datetime',
+                categories: data?.map((price) => price.time_close),
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {gradientToColors: ['hotpink'], stops: [0,100]},
+            },
+            colors: ['pink'],
+            tooltip: {
+                y: {
+                    formatter: (value) => `$ ${value.toFixed(2)}`
+                }
             }
         }}
     />
