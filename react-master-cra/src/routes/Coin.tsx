@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation, useParams, Link, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useLocation, useParams, Link, useRouteMatch, useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Price from './Price';
@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import { fetchCoinInfo, fetchCoinTickers } from '../api';
 import { Helmet } from 'react-helmet';
 
-
+// style component
 const Container = styled.div`
     padding: 0 20px;
     max-width: 480px;
@@ -27,6 +27,19 @@ const Header = styled.header`
 const Loader = styled.span`
     display: block;
     text-align: center; 
+`;
+const BtnWrap = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+`;
+const BackBtn = styled.button`
+    display: block;
+    padding: 10px 20px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
 `;
 const Overview = styled.div`
     display: flex;
@@ -69,7 +82,7 @@ const Tab = styled.li<{ isActive: boolean }>`
     }
 `;
 
-
+// interface
 interface RouteParams {
     coinId: string;
 }
@@ -162,6 +175,10 @@ function Coin() {
     //     })();
     // }, [coinId])
     const loading = infoLoading || tickersLoading;
+    const history = useHistory();
+    const backHistory = () => {
+        history.push('/');
+    };
     return (
         <Container>
             <Helmet>
@@ -176,6 +193,11 @@ function Coin() {
                 <Loader>Loading...</Loader>
             ) : (
                 <>
+                    <BtnWrap>
+                        <BackBtn onClick={backHistory}>
+                            back
+                        </BackBtn>
+                    </BtnWrap>
                     <Overview>
                         <OverviewItem>
                             <span>Rank:</span>
