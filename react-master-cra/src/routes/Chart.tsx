@@ -58,9 +58,9 @@ function Chart({ coinId }: ChartProps) {
                 },
                 fill: {
                     type: 'gradient',
-                    gradient: { gradientToColors: ['hotpink'], stops: [0, 100] },
+                    gradient: { gradientToColors: ['#fab1a0'], stops: [0, 100] },
                 },
-                colors: ['pink'],
+                colors: ['#ff7675'],
                 tooltip: {
                     y: {
                         formatter: (value) => `$ ${value.toFixed(2)}`

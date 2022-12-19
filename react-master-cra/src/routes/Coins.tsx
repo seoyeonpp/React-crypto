@@ -15,6 +15,8 @@ const Header = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 36px;
+    font-weight: 700;
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
@@ -76,11 +78,11 @@ function Coins() {
         <Container>
             <Helmet>
                 <title>
-                    코인
+                    Coins
                 </title>
             </Helmet>
             <Header>
-                <Title>코인</Title>
+                <Title>Coins</Title>
             </Header>
             {isLoading ?
                 <Loader>Loading...</Loader> : (
