@@ -20,7 +20,7 @@ const Header = styled.header`
 `;
 const CoinsList = styled.ul``;
 const Coin = styled.li`
-    background-color: #333;
+    background-color: rgba(255,255,255,0.5);
     color : ${(props) => props.theme.textColor};
     margin-bottom: 10px;
     border-radius: 10px;
