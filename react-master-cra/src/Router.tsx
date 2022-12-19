@@ -1,4 +1,4 @@
-import {BrowserRouter, Switch,Route} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import { fetchCoins } from '../api';
@@ -60,7 +60,7 @@ interface CoinInterface {
 }
 
 function Coins() {
-    const {isLoading, data} =  useQuery<CoinInterface[]>("allCoins",fetchCoins)
+    const { isLoading, data } = useQuery<CoinInterface[]>("allCoins", fetchCoins)
     // const [coins, setCoins] = useState<CoinInterface[]>([]);
     // const [loading, setLoaing] = useState(true);
     // useEffect(() => {
@@ -76,16 +76,16 @@ function Coins() {
             <Header>
                 <Title>코인</Title>
             </Header>
-            {isLoading ? 
+            {isLoading ?
                 <Loader>Loading...</Loader> : (
                     <CoinsList>
-                        {data?.slice(0,100).map((coin) => (
+                        {data?.slice(0, 100).map((coin) => (
                             <Coin key={coin.id}>
                                 <Link to={{
                                     pathname: `/${coin.id}`,
-                                    state: {name: coin.name }
+                                    state: { name: coin.name }
                                 }}>
-                                    <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}/>
+                                    <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} />
                                     {coin.name} &rarr;
                                 </Link>
                             </Coin>
