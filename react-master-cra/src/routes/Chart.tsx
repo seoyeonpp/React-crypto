@@ -7,6 +7,7 @@ import { type } from '@testing-library/user-event/dist/type';
 
 interface ChartProps {
     coinId: string;
+    isDark: boolean;
 }
 interface IHistorical {
     time_open: number;
@@ -19,7 +20,7 @@ interface IHistorical {
     market_cap: number;
 }
 
-function Chart({ coinId }: ChartProps) {
+function Chart({ coinId, isDark }: ChartProps) {
     const { isLoading, data } = useQuery<IHistorical[]>(['ohlcv', coinId], () => fetchCoinHistory(coinId));
 
     return <div>{isLoading ? ("Loading chart...") : (
@@ -33,7 +34,7 @@ function Chart({ coinId }: ChartProps) {
             ]}
             options={{
                 theme: {
-                    mode: "dark"
+                    mode: isDark ? "dark" : 'light'
                 },
                 chart: {
                     background: 'transparent',

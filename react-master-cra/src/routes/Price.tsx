@@ -6,6 +6,7 @@ import ApexChart from 'react-apexcharts';
 
 interface PriceProps {
     coinId: string;
+    isDark: boolean;
 }
 interface IHistorical {
     time_open: number;
@@ -18,7 +19,7 @@ interface IHistorical {
     market_cap: number;
 }
 
-function Price({ coinId }: PriceProps) {
+function Price({ coinId, isDark }: PriceProps) {
     const { isLoading, data } = useQuery<IHistorical[]>(['ohlcv', coinId], () => fetchCoinHistory(coinId));
     return <div>
         {isLoading ? ("Loading Price...") : (
@@ -35,7 +36,7 @@ function Price({ coinId }: PriceProps) {
                 ]}
                 options={{
                     theme: {
-                        mode: "dark"
+                        mode: isDark ? "dark" : 'light'
                     },
                     chart: {
                         background: 'transparent',

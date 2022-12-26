@@ -89,7 +89,6 @@ interface RouteParams {
 interface RouteState {
     name: string;
 }
-// interface 이름 앞에 대문자 I를 보통 붙힌다. 
 interface IInfoData {
     id: string;
     name: string;
@@ -145,9 +144,11 @@ interface IPriceData {
         }
     };
 }
+interface ICoinProps {
+    isDark: boolean;
+}
 
-
-function Coin() {
+function Coin({ isDark }: ICoinProps) {
     const { coinId } = useParams<RouteParams>();
     const { state } = useLocation<RouteState>();
     const priceMatch = useRouteMatch("/:coinId/price");
@@ -237,10 +238,10 @@ function Coin() {
                     </Tabs>
                     <Switch>
                         <Route path={`/${coinId}/price`}>
-                            <Price coinId={coinId} />
+                            <Price coinId={coinId} isDark={isDark} />
                         </Route>
                         <Route path={`/${coinId}/chart`}>
-                            <Chart coinId={coinId} />
+                            <Chart coinId={coinId} isDark={isDark} />
                         </Route>
                     </Switch>
                 </>
